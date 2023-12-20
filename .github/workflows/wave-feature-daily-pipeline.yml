@@ -1,4 +1,4 @@
-name: wine-feature-pipeline-daily
+name: wave-feature-pipeline-daily
 
 on:
   workflow_dispatch:
