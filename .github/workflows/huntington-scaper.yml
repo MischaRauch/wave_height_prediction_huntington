@@ -1,4 +1,4 @@
-name: wine-feature-pipeline-daily
+name: scrapper
 
 on:
   workflow_dispatch:
