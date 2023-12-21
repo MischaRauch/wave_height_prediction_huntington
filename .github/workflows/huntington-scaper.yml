@@ -28,6 +28,7 @@ jobs:
       - name: commit and push
         run: |
           git config --global user.email "rudolfnosek.rn@gmail.com"
+          git add data/huntington.csv
           git config --global user.name "Automatic"
           git commit -m "Scrapper - Auto commit "
           git push
