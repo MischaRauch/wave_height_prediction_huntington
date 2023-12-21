@@ -24,3 +24,8 @@ jobs:
           
       - name: execute python workflows
         run: python scrapper.py
+
+      - name: commit and push
+        run: |
+          git commit -m "Scrapper - Auto commit "
+          git push
