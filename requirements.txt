@@ -7,3 +7,4 @@ seaborn
 dataframe-image
 modal
 gradio==3.14
+parsedatetime
