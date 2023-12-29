@@ -138,7 +138,7 @@ df['pred_dtime'] = pd.to_datetime(df['pred_dtime'], format='%Y%m%d')
 time_offsets = pd.Series([timedelta(minutes=40) * i for i in range(len(df))])
 
 df['hour_offset'] = time_offsets
-df['pred_dtime'] = df['pred_dtime'] + df.hour.astype('timedelta64[m]')
+df['pred_dtime'] = df['pred_dtime'] + df.hour.astype('timedelta64[h]')
 
 # get the waves that go to shore and are relevant
 df[['height','period','direction']]=df.apply(best_height, axis=1)
