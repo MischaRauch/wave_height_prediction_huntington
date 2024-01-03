@@ -3,7 +3,9 @@ name: scrapper
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */8 * * *'
+    - cron: '35 20 * * *'
+    - cron: '05 15 * * *'
+    - cron: '05 16 * * *'
 
 jobs:
   test_schedule:
@@ -23,12 +25,6 @@ jobs:
           pip install -r requirements/requirements_scrapper.txt
           
       - name: execute python workflows
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
         run: python scrapper.py
-
-      - name: commit and push
-        run: |
-          git config --global user.email "rudolfnosek.rn@gmail.com"
-          git add data/huntington.csv
-          git config --global user.name "Automatic"
-          git commit -m "Scrapper - Auto commit "
-          git push
