@@ -134,8 +134,8 @@ res,thedate=process_url(url)
 df = pd.DataFrame(res, columns=primary_columns)
 df['pred_dtime'] = pd.to_datetime(df['pred_dtime'], format='%Y%m%d')
 
-# Generate the timedelta series (40 minutes for each row)
-time_offsets = pd.Series([timedelta(minutes=40) * i for i in range(len(df))])
+# Generate the timedelta series (20 minutes for each row)
+time_offsets = pd.Series([timedelta(minutes=20) * i for i in range(len(df))])
 df['hour_offset'] = time_offsets
 
 df['hour'] = df['hour'].astype(int)  # Convert to integer

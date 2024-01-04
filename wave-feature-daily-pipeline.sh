@@ -18,4 +18,5 @@ API_KEY=$HOPSWORKS_API_KEY
 export HOPSWORKS_API_KEY=$API_KEY
 
 # Execute a Python script, for instance, to train a model using the Iris dataset
-python "$BASEDIR/wave-feature-daily-pipeline.py"
+python "$BASEDIR/wave-feature-daily/wave-feature-daily-pipeline.py"
+python "$BASEDIR/wave-feature-merger/wave-feature-merger.py"
