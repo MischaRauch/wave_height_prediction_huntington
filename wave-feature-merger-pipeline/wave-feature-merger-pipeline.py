@@ -47,10 +47,11 @@ merged_fg = fs.get_or_create_feature_group(name="merged_swells_huntington",
 merged_fg.insert(merged_df)
 
 ################# CREATE FEATURE VIEW #################
-merged_fg = fs.get_feature_group(name="merged_swells_huntington", version=2)
-query = merged_fg.select_all()
-feature_view = fs.get_or_create_feature_view(name="merged_swells_huntington",
-                                  version=2,
-                                  description="Feature view combining the buoy swells and the beach swells",
-                                  labels=["quality"],
-                                  query=query)
+# I do not think we should change the feature view, if we do not want to train a new model
+# merged_fg = fs.get_feature_group(name="merged_swells_huntington", version=2)
+# query = merged_fg.select_all()
+# feature_view = fs.get_or_create_feature_view(name="merged_swells_huntington",
+#                                   version=2,
+#                                   description="Feature view combining the buoy swells and the beach swells",
+#                                   labels=["quality"],
+#                                   query=query)
