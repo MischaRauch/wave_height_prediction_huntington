@@ -38,8 +38,8 @@ merged_df = merged_df.drop(["pred_dtime",'datetime'],axis=1)
 ################# CREATE NEW FEATURE GROUP #################
 # Save the merged DataFrame as a new Feature Group
 merged_fg = fs.get_or_create_feature_group(name="merged_swells_huntington",
-                version=1,
-                primary_key=["beach_id"],
+                version=2,
+                primary_key=['year','month','day','hour','minute'],
                 description="Merged swell from buoy and huntington website",
                 online_enabled=True,
                 statistics_config={"enabled": True, "histograms": True, "correlations": True},
@@ -47,10 +47,10 @@ merged_fg = fs.get_or_create_feature_group(name="merged_swells_huntington",
 merged_fg.insert(merged_df)
 
 ################# CREATE FEATURE VIEW #################
-merged_fg = fs.get_feature_group(name="merged_swells_huntington", version=1)
+merged_fg = fs.get_feature_group(name="merged_swells_huntington", version=2)
 query = merged_fg.select_all()
 feature_view = fs.get_or_create_feature_view(name="merged_swells_huntington",
-                                  version=1,
+                                  version=2,
                                   description="Feature view combining the buoy swells and the beach swells",
                                   labels=["quality"],
                                   query=query)
