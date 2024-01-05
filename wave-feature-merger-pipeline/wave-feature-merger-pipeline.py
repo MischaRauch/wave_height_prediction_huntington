@@ -35,10 +35,16 @@ beach_swells_sorted = df2.sort_values(by='datetime', ascending=False)
 merged_df = pd.merge(buoy_swells_sorted, beach_swells_sorted, left_on='hits_at', right_on='datetime', how='inner')
 merged_df = merged_df.drop(["pred_dtime",'datetime'],axis=1)
 
+
+################# CHANGE TYPE #################
+merged_df['height'] = merged_df['height'].apply(float)
+merged_df['period'] = merged_df['period'].apply(float)
+merged_df['direction'] = merged_df['direction'].apply(float)
+
 ################# CREATE NEW FEATURE GROUP #################
 # Save the merged DataFrame as a new Feature Group
 merged_fg = fs.get_or_create_feature_group(name="merged_swells_huntington",
-                version=2,
+                version=3,
                 primary_key=['year','month','day','hour','minute'],
                 description="Merged swell from buoy and huntington website",
                 online_enabled=True,
@@ -51,7 +57,7 @@ merged_fg.insert(merged_df)
 # merged_fg = fs.get_feature_group(name="merged_swells_huntington", version=2)
 # query = merged_fg.select_all()
 # feature_view = fs.get_or_create_feature_view(name="merged_swells_huntington",
-#                                   version=2,
+#                                   version=4,
 #                                   description="Feature view combining the buoy swells and the beach swells",
 #                                   labels=["quality"],
 #                                   query=query)
