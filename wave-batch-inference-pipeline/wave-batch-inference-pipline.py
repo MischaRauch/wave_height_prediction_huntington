@@ -10,10 +10,10 @@ from sklearn.metrics import mean_absolute_error
 
 import sys 
 import os
-print(os.getcwd())
-print()
-os.chdir('/'.join(os.getcwd().split('/')[:-1]))
-print(os.getcwd())
+# print(os.getcwd())
+# print()
+# os.chdir('/'.join(os.getcwd().split('/')[:-1]))
+# print(os.getcwd())
 from wave_model.LinReg import LinReg
 
 
