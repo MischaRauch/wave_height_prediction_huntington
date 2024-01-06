@@ -1,0 +1,28 @@
+name: batch inference monitoring
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '00 00 * * *'
+
+jobs:
+  test_schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2
+
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10.13'
+          
+      - name: install python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: execute python workflows
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+        run: python wave-batch-inference-pipeline/wave-batch-inference-pipline.py
