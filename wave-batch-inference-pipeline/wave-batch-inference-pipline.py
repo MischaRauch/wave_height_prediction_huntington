@@ -14,7 +14,9 @@ import os
 # print()
 # os.chdir('/'.join(os.getcwd().split('/')[:-1]))
 # print(os.getcwd())
-from wave_model.LinReg import LinReg
+
+sys.path.append("./wave_model")
+import LinReg
 
 
 project = hopsworks.login()
