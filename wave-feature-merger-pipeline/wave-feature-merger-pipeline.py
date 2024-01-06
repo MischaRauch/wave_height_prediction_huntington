@@ -40,12 +40,14 @@ merged_df = merged_df.drop(["pred_dtime",'datetime'],axis=1)
 merged_df['height'] = merged_df['height'].apply(float)
 merged_df['period'] = merged_df['period'].apply(float)
 merged_df['direction'] = merged_df['direction'].apply(float)
+merged_df['hits_at'] = pd.to_datetime(merged_df['hits_at'])
 
 ################# CREATE NEW FEATURE GROUP #################
 # Save the merged DataFrame as a new Feature Group
 merged_fg = fs.get_or_create_feature_group(name="merged_swells_huntington",
-                version=3,
+                version=4,
                 primary_key=['year','month','day','hour','minute'],
+                event_time='hits_at',
                 description="Merged swell from buoy and huntington website",
                 online_enabled=True,
                 statistics_config={"enabled": True, "histograms": True, "correlations": True},
