@@ -173,6 +173,7 @@ X = data.drop(['pred_dtime'],axis=1).values
 mr = project.get_model_registry()
 model = mr.get_model('wave_reg',version=1)
 model_dir = model.download()
+print(model_dir)
 model = joblib.load(model_dir + "/wave_reg.pkl")
 
 y_pred = model.predict_labels(X)
