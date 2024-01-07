@@ -163,3 +163,31 @@ swells_fg = fs.get_or_create_feature_group(name="buoy_swells_huntington",
                 statistics_config={"enabled": True, "histograms": True, "correlations": True}
                 )
 swells_fg.insert(df)
+
+import joblib
+
+data = df.sort_values(by='hits_at',ascending=False).head(1)[['height','period','direction','pred_dtime']]
+
+time = data['pred_dtime'] + timedelta(minutes=24)
+X = data.drop(['pred_dtime'],axis=1).values
+mr = project.get_model_registry()
+model = mr.get_model('wave_reg',version=1)
+model_dir = model.download()
+model = joblib.load(model_dir + "/wave_reg.pkl")
+
+y_pred = model.predict_labels(X)
+
+time = time.values[0]
+
+import matplotlib.pyplot as plt
+fig,ax = plt.subplots()
+ax.text(0.5,0.9,'Surfing quality is predicted to be:',fontsize=50,ha='center')
+ax.text(0.5,0.5,y_pred[0],fontsize=100,va='center', ha='center')
+ax.text(0.5,0.1,'updated on '+pd.to_datetime(str(time)).strftime('%H:%M %d/%m/%Y'),fontsize=25,va='center', ha='center')
+ax.tick_params(left=False, labelleft=False, bottom=False, labelbottom=False)
+for spine in ax.spines.values():
+    spine.set_visible(False)
+fig.savefig('prediction')
+
+dataset_api = project.get_dataset_api()
+dataset_api.upload("./prediction.png", "Resources/images", overwrite=True)
