@@ -1,5 +1,7 @@
 # Surf Prediction at Huntington Beach, California
 
+## Check out the latest predicted surf application on [Huggingface](https://huggingface.co/spaces/MischaTomasz/huntington_surf_prediction_ui)
+
 ![Project Overview](resources/architecture_wave_model.png)
 
 ## About
