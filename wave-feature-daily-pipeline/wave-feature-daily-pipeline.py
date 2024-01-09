@@ -81,10 +81,10 @@ primary_columns=['pred_dtime', 'hour', 'pred_day', 'pred_hour', 'height1', 'peri
          'period2', 'direction2', 'height3', 'period3', 'direction3'] 
 
 # changed angels to valid swell from around 10 - 65 degrees
+# after speaking with supervisor this seemed to be wrong and was changed to 360°-130°
 def is_valid_swell_direction(direction):
-    if int(direction) > 66 or int(direction) < 9:
-        return False
-    return True
+    direction = int(direction)
+    return 130 < direction <= 360 or direction == 0
 
 def best_height(row):
     best_secondary=2
