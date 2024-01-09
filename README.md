@@ -17,7 +17,7 @@ Combining these two data sources provides a comprehensive view of the marine and
 ## Methodology
 The first step in this project was to become familiar with the two datasources: 
 1. **NOAA Buoy 46253:** 
-![Visualization of the Buoy and the Huntington Beach](resources/eda_new.png)
+![Visualization of the Buoy and the Huntington Beach](resources/eda_new_2.png)
 The utilised data from NOAA contained the *wave height*, *the period*, and *the direction* of incoming waves at the buoy. The first task was to filter this data with only the relevant waves that will end up at the beach in Huntington. To accomplish this first the disred radius of incoming waves was calculated to be  ~10°-65°. Secondly, the estimated arrival time from the recorded buoy in the ocean to the wave reaching the shore had to be calculated which resulted in ~24 minutes. The refined data, by selecting only the waves directed towards the shore, and by incorporating the estimated time of their arrival at the shore made  the dataset that was stored on Hopsworks.
 
 2. **Huntington Beach:**
