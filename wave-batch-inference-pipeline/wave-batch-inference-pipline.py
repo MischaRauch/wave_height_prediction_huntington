@@ -69,7 +69,7 @@ model = joblib.load(model_dir + "/wave_reg.pkl")
 
 fv = fs.get_feature_view('merged_swells_huntington', version=5)
 df = fv.get_batch_data(
-    start_time = (datetime.now()-timedelta(1)).strftime("%Y%m%d"),
+    start_time = (datetime.now()-timedelta(2)).strftime("%Y%m%d"),
     end_time = datetime.now().strftime("%Y%m%d"),
     read_options={"use_hive": True})
 
