@@ -109,7 +109,7 @@ def best_height(row):
 # feature engineering - estimate the time at which the swell arrives at Lahinch from buoy
 def estimate_hits_at(row):
     # baseline estimate
-    hits_at = row['pred_dtime'] + row['hour_offset'] + timedelta(hours=0.4) 
+    hits_at = row['pred_dtime'] + row['hour_offset'] + timedelta(hours=0.333) 
     return pd.Series([hits_at])
 
 
