@@ -2,8 +2,8 @@ name: batch inference monitoring
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '30 01 * * *'
+  # schedule:
+    # - cron: '30 01 * * *'
 
 jobs:
   test_schedule:
